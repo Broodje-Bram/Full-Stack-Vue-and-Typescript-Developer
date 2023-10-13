@@ -24,3 +24,6 @@ Tasks
 9 Code Organization & Quality: Follow Vue best practices for organizing your codebase. Implement error handling, data validation, and maintain clear naming schemes.
 
 10  Repository and Deployment: Create a new GitHub repository for the project and deploy the application using services like Vercel or Netlify. Ensure a clear commit history that documents your thought process.
+
+
+My api code doesn't work at the moment so i used dummy data.

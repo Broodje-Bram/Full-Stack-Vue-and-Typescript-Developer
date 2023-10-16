@@ -1,54 +1,53 @@
 <template>
   <div>
-    <h1 class="text-2xl font-bold mb-4">User Details</h1>
-    <div class="bg-white p-4 rounded-lg shadow-md">
-      <div class="mb-4">
-        <strong>Name:</strong> {{ user.name }}
-      </div>
-      <div class="mb-4">
-        <strong>Email:</strong> {{ user.email }}
-      </div>
+    <h1>User Details</h1>
+    <div v-if="user">
+      <table>
+        <tbody>
+        <tr>
+          <td>ID:</td>
+          <td>{{ user.id }}</td>
+        </tr>
+        <tr>
+          <td>First Name:</td>
+          <td>{{ user.first_name }}</td>
+        </tr>
+        <tr>
+          <td>Last Name:</td>
+          <td>{{ user.last_name }}</td>
+        </tr>
+        <!-- Add more rows for other user details -->
+        </tbody>
+      </table>
+    </div>
+    <div v-else>
+      <p>User details not found.</p>
     </div>
   </div>
 </template>
 
 <script>
-import { defineComponent, onMounted, ref } from 'vue';
 import axios from 'axios';
 
-export default defineComponent({
+export default {
+  name: "UserDetail",
+  props: ['id'],
+
   data() {
     return {
-      user: {
-        name: '',
-        email: '',
-        // Add more user details fields here
-      },
+      user: null,
     };
   },
-  setup(props, { params }) {
-    const userId = params.id;
 
-    const fetchUserDetails = async () => {
-      try {
-        const response = await axios.get(`https://app.hirechain.xyz/api/tech-test/user/${userId}`);
-        // Replace 'user' properties with the actual user details received from the API
-        this.user = response.data;
-      } catch (error) {
-        // Handle errors, such as displaying an error message or redirecting
-      }
-    };
-
-    onMounted(() => {
-      fetchUserDetails();
-    });
-
-    return {
-      userId: this.user,
-    };
+  async created() {
+    const userId = this.id;
+    try {
+      const response = await axios.get(`https://app.hirechain.xyz/api/tech-test?code=651984&user_id=${userId}`);
+      this.user = response.data;
+      console.log(response.data);
+    } catch (error) {
+      console.error('Error fetching user details:', error);
+    }
   },
-});
+};
 </script>
-
-<style scoped>
-</style>

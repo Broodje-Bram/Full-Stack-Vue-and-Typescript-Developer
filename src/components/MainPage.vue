@@ -33,10 +33,10 @@ export default {
           this.$router.push({ name: "FakeLogin" });
         } else if (error.response.status === 500) {
           // Retry the request
-          this.userData = data;
+          // this.userData = data;
         } else {
           console.log(error);
-        },
+        }
       }
       // Pagination methods
     },

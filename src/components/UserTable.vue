@@ -1,7 +1,6 @@
 <template>
   <div>
     <!-- Your table rendering code -->
-    <button @click="sendUserData">Send User Data</button>
   </div>
 </template>
 
